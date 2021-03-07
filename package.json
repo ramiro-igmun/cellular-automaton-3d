@@ -1,0 +1,14 @@
+{
+  "name": "gol3d",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./scr/app.sj",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "zdog": "^1.1.2"
+  }
+}
