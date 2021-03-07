@@ -4,7 +4,7 @@ export class Evolutioner {
 
   survive = [];
   born = [];
-  states = 2;
+  states = 1;
   #countNeighbours;
 
   constructor({ survive, born, states }) {
@@ -42,7 +42,7 @@ export class Evolutioner {
           const y1 = this.#normalizeIndex(b, length);
           const z1 = this.#normalizeIndex(c, length);
 
-          if (array[x1][y1][z1]) {
+          if (array[x1][y1][z1] === this.states) {
             counter++;
           }
         }
@@ -55,8 +55,14 @@ export class Evolutioner {
     return index < 0 ? length - 1 : index > (length - 1) ? 0 : index;
   }
 
-  #applyRules(isAlive, neighboursAlive) {
-    return isAlive ? this.survive.includes(neighboursAlive) : this.born.includes(neighboursAlive); 
+  #applyRules(state, neighboursAlive) {
+    if (state === this.states) {
+      return this.survive.includes(neighboursAlive) ? state : state - 1;
+    } else if (state < this.states && state > 0) {
+      return state - 1;
+    } else {
+      return this.born.includes(neighboursAlive) ? this.states : 0;
+    }  
   }
 
 }
