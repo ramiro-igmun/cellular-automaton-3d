@@ -69,13 +69,14 @@ export class Renderer {
       height: this.#arrayLength * (this.spaceBetweenCells + (this.spaceBetweenCells / 8)),
       depth: this.#arrayLength * (this.spaceBetweenCells + (this.spaceBetweenCells / 8)),
       stroke: 5,
-      color: 'hsla(150, 52%, 50% , 0.1)',
+      color: 'hsla(150, 0%, 50% , 0.05)',
     });
   }
 
   #drawPoint(x, y, z) {
     return new Zdog.Shape({
       ...this.#circleOptions,
+      color: `hsla(${x * 11}, 80%, 50% , 1)`,
       translate: {
         x: this.spaceBetweenCells * (x - (this.#arrayLength / 2)),
         y: this.spaceBetweenCells * (y - (this.#arrayLength / 2)),
