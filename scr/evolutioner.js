@@ -51,6 +51,23 @@ export class Evolutioner {
     return counter;
   }
 
+  newmanNeighborhood = (position, array) => {
+    const { length } = array;
+    const [x, y, z] = position;
+    let counter = 0;
+    const positions = [[x-1, y, z], [x+1, y, z], [x, y+1, z], [x, y-1, z], [x, y, z+1], [x, y, z-1]];
+    for (const position of positions) {
+      const [a, b, c] = position;
+      const x1 = this.#normalizeIndex(a, length);
+      const y1 = this.#normalizeIndex(b, length);
+      const z1 = this.#normalizeIndex(c, length);
+      if (array[x1][y1][z1] === this.states) {
+        counter++;
+      }
+    }
+    return counter;
+  }
+
   #normalizeIndex(index, length) {
     return index < 0 ? length - 1 : index > (length - 1) ? 0 : index;
   }

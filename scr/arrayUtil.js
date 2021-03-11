@@ -9,8 +9,8 @@ export const generate3dArray = (length, states) => {
     if (inInitialSpawnRange(rowIndex, length) && inInitialSpawnRange(columnIndex, length) && inInitialSpawnRange(layerIndex, length)) {
       return Math.random() < 0.2 ? states : 0;
     } else {
-      return 0;
-      // return Math.random() < 0.2 ? states : 0;
+      // return 0;
+      return Math.random() < 0.2 ? states : 0;
     }
   })));
 };

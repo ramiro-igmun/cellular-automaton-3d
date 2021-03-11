@@ -76,7 +76,7 @@ export class Renderer {
   #drawPoint(x, y, z) {
     return new Zdog.Shape({
       ...this.#circleOptions,
-      color: `hsla(${x * 11}, 80%, 50% , 1)`,
+      color: (this.#isArrayBorder(x) || this.#isArrayBorder(y) || this.#isArrayBorder(z)) ? `hsla(0, 80%, 30% , 1)` : `hsla(${x * 11}, 80%, 50% , 1)`,
       translate: {
         x: this.spaceBetweenCells * (x - (this.#arrayLength / 2)),
         y: this.spaceBetweenCells * (y - (this.#arrayLength / 2)),
@@ -85,9 +85,14 @@ export class Renderer {
     });
   }
 
+  #isArrayBorder(axisCoordinate) {
+    return [0, this.#arrayLength -1].includes(axisCoordinate)
+  }
+
   #animate(illo) {
     return () => {
       illo.updateRenderGraph();
+      this.#anchor.rotate.y += 0.005;
       requestAnimationFrame(this.#animate(illo));
     }
   }
